@@ -32,4 +32,10 @@ def adicionar_produto(nome: str, categoria: str, preco: float, quantidade: str):
     funcao.criar_produto(nome, categoria, preco, quantidade)
     return("mensagem: produto adicionado com sucesso!")
 
-
+@app.put("/produtos/{id_produto}")
+def atualizar_estoque(id_produto: int):
+    produtos = funcao.buscar_produto(id_produto)
+    if produtos:
+        funcao.atualizar_produto(id_produto)
+        return{"mensagem": "Produto atualizado"}
+    return {"error": "Produto não encontrado"}
