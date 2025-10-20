@@ -39,3 +39,10 @@ def atualizar_estoque(id_produto: int):
         funcao.atualizar_produto(id_produto)
         return{"mensagem": "Produto atualizado"}
     return {"error": "Produto não encontrado"}
+
+@app.delete("/produto/{id_produto}")
+def deletar_produto(id_produto: int):
+    produto = funcao.buscar_produto(id_produto)
+    if produto:
+        funcao.deletar_produto(id_produto)
+    return {"mensagem": f"Produto {id_produto} deletado com sucesso!"}
