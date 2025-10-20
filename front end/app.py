@@ -17,3 +17,10 @@ if menu == "Catálogo":
 
     else:
         st.error("Erro ao conectar API")
+
+if menu == "Adicionar Produto":
+    st.subheader("Inserir Produto ➕")
+    nome = st.text_input("Nome Produto")
+    categoria = st.text_input("Categoria Produto")
+    preco = st.number_input("Valor do Produto")
+    quantidade = st.number_input("Digite a quantidade do Produto")
