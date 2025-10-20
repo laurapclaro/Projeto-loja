@@ -118,4 +118,3 @@ def pesquisar_produto(nome_parcial):
 
 #---------------
 
-def

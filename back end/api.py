@@ -1,0 +1,26 @@
+from fastapi import FastAPI
+import funcao
+
+
+app = FastAPI(tittle="Gerenciador de estoque")
+#GET
+#POST
+#PUT
+#DELETE
+
+@app.get("/")
+def home():
+    return {"mensagem": "Bem - vindo ao estoque!"}
+
+@app.get("/produtos")
+def catalogo():
+    produtos = funcao.listar_total
+    lista = []
+    for produto in produtos:
+        lista.append( { "id": produto[0], 
+                    "nome": produto[1], 
+                    "categoria": produto[2],
+                    "preco": produto[3],
+                     "quantidade": produto[4] 
+                     })
+    return{"filmes": lista}
