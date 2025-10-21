@@ -1,8 +1,7 @@
 from fastapi import FastAPI
 import funcao
 
-
-app = FastAPI(tittle="Gerenciador de estoque")
+app = FastAPI(title="Gerenciador de estoque")
 #GET
 #POST
 #PUT
@@ -21,16 +20,14 @@ def catalogo():
                     "nome": produto[1], 
                     "categoria": produto[2],
                     "preco": produto[3],
-                     "quantidade": produto[4] 
+                    "quantidade": produto[4] 
                      })
     return{"produtos": lista}
 
-
-
 @app.post("/produtos")
 def adicionar_produto(nome: str, categoria: str, preco: float, quantidade: int):
-    funcao.criar_produto(nome, categoria, preco, quantidade)
-    return("mensagem: produto adicionado com sucesso!")
+    funcao.adicionar_produto(nome, categoria, preco, quantidade)
+    return {"mensagem": "Produto adicionado com sucesso!"}
 
 @app.put("/produtos/{id_produto}")
 def atualizar_estoque(id_produto: int):

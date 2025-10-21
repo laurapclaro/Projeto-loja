@@ -15,10 +15,9 @@ if menu == "📦 Catálogo":
         produtos = response.json().get("produtos", [])
         if produtos:
             for produto in produtos:
-                st.write(F" **{produto['nome']}** // {produto['categoria']} // {produto['preco']} // {produto['quantidade']}")
+                st.write(f"{produto['nome']} - {produto['categoria']}  {produto['preco']}  {produto['quantidade']}")
         else:
             st.info("Nenhum produto encontrado🔈")
-
     else:
         st.error("Erro ao conectar API")
 
@@ -32,9 +31,11 @@ if menu == "➕ Adicionar Produto":
     if st.button("Finalizar Cadastro Produtos"):
         params = {"nome": nome, "categoria": categoria, "preco": preco, "quantidade": quantidade}
         response = rq.post(f"{API_URL}/produtos", params=params)
+        print(response.status_code)
         if response.status_code == 200:
             st.success(" Produto adicionado com sucesso! ✔")
         else:
+            
             st.error("Error!")
 
 elif menu == "✏️ Atualizar Produto":
@@ -54,7 +55,7 @@ elif menu == "✏️ Atualizar Produto":
         if nova_quantidade: params["quantidade"] = nova_quantidade
 
         if params:
-            response = rq.post(f"{API_URL}/produtos", json=params)
+            response = rq.post(f"{API_URL}/produtos", params=params)
             if response.status_code == 200:
                 st.success("Produto atualizado com sucesso!")
             else:
@@ -70,6 +71,6 @@ elif menu == "❌ Deletar Produto":
     if st.button("Deletar"):
         response = rq.delete(f"{API_URL}/produtos/{identificacao}")
         if response.status_code == 200:
-            st.success("Produto deletado com sucesso!")
-        else:
-            st.error("Erro ao deletar produto.")
+            st.success("Produto adicionado com sucesso! ✔")
+    else:
+        st.error(f"Erro {response.status_code}: {response.text}")

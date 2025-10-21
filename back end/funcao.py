@@ -35,7 +35,7 @@ def adicionar_produto(nome, categoria, preco, quantidade):
                 "INSERT INTO produtos (nome, categoria, preco, quantidade) VALUES (%s, %s, %s, %s)",
                 (nome, categoria, preco, quantidade)
             )
-            conexao.comit()
+            conexao.commit()
         except Exception as erro:
             print(F"Erro ao inserir {erro}")
         finally:
@@ -59,8 +59,6 @@ def listar_total():
             cursor.close()
             conexao.close()
 
-produtos = listar_total()
-print(produtos)
 
 #------------
 
