@@ -6,7 +6,7 @@ def criar_tabela():
         try: 
             cursor.execute("""
             CREATE TABLE IF NOT EXISTS produtos (
-               id SERIAL,
+                id SERIAL PRIMARY KEY,
                 nome VARCHAR(100) NOT NULL,
                 categoria VARCHAR(50),
                 preco DECIMAL(10,2),
@@ -37,7 +37,7 @@ def adicionar_produto(nome, categoria, preco, quantidade):
             )
             conexao.commit()
         except Exception as erro:
-            print(F"Erro ao inserir {erro}")
+            print(f"Erro ao inserir {erro}")
         finally:
             cursor.close()
             conexao.close()
@@ -62,38 +62,38 @@ def listar_total():
 
 #------------
 
-def atualizar_preco_quantidade(preco, quantidade):
+def atualizar_preco_quantidade(id_produto, preco, quantidade):
     conexao, cursor = conectar()
     if conexao:
         try:
             cursor.execute(
-                "UPDAT produtos SET preco = %s WHERE id = %s",
-                "UPDATE produtos SET quantidade = %s WHERE id = %s",
-                (quantidade, preco)
+                "UPDATE produtos SET preco = %s, quantidade = %s WHERE id = %s",
+                (preco, quantidade, id_produto)
             )
             conexao.commit()
         except Exception as erro:
-            print(f"Erro as atualizar a nota: {erro}")
+            print(f"Erro ao atualizar o produto: {erro}")
         finally:
             cursor.close()
             conexao.close()
 
 #------------
 
-def deletar_movie(id_produto):
+def deletar_produto(id_produto):
     conexao, cursor = conectar()
     if conexao:
         try:
             cursor.execute(
-                "DELETE FROM produtos WHERE id = %s, (id_produto,)"
+                "DELETE FROM produtos WHERE id = %s",
+                (id_produto,)
             )
-            conexao.comit()
+            conexao.commit()
         except Exception as erro:
-            print(f"Erro ao deletar filme: {erro}")
+            print(f"Erro ao deletar produto: {erro}")
         finally:
             cursor.close()
             conexao.close()
-
+            
 #-------------
 
 def pesquisar_produto(nome_parcial):
@@ -115,4 +115,3 @@ def pesquisar_produto(nome_parcial):
 
 
 #---------------
-

@@ -35,7 +35,7 @@ if menu == "➕ Adicionar Produto":
         if response.status_code == 200:
             st.success(" Produto adicionado com sucesso! ✔")
         else:
-            
+
             st.error("Error!")
 
 elif menu == "✏️ Atualizar Produto":
@@ -66,11 +66,11 @@ elif menu == "✏️ Atualizar Produto":
 
 elif menu == "❌ Deletar Produto":
     st.subheader("Deletar Produto ✖")
-    identificacao = st.number_input("ID do produto a deletar", step=1, format="%d")
+    id_produto  = st.number_input("ID do produto a deletar", step=1, format="%d")
     
     if st.button("Deletar"):
-        response = rq.delete(f"{API_URL}/produtos/{identificacao}")
+        response = rq.delete(f"{API_URL}/produtos/{id_produto }")
         if response.status_code == 200:
             st.success("Produto adicionado com sucesso! ✔")
-    else:
-        st.error(f"Erro {response.status_code}: {response.text}")
+        else:
+            st.error(f"Erro {response.status_code}: {response.text}")
