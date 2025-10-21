@@ -115,3 +115,17 @@ def pesquisar_produto(nome_parcial):
 
 
 #---------------
+def buscar_produto(id_produto):
+    conexao, cursor = conectar()
+    if conexao:
+        try:
+            cursor.execut(
+                "SELECT * FROM produtos WHERE id = %s", (id_produto)
+            )
+            return cursor.fetchone()
+        except Exception as erro:
+            print(f"Erro ao listar {erro}")
+            return []
+        finally:
+            cursor.close()
+            conexao.close()
