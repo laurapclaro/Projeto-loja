@@ -14,7 +14,7 @@ def home():
 
 @app.get("/produtos")
 def catalogo():
-    produtos = funcao.listar_produtos()
+    produtos = funcao.listar_total()
     lista = []
     for produto in produtos:
         lista.append({

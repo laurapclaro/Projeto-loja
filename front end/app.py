@@ -71,6 +71,6 @@ elif menu == "❌ Deletar Produto":
     if st.button("Deletar"):
         response = rq.delete(f"{API_URL}/produtos/{id_produto }")
         if response.status_code == 200:
-            st.success("Produto adicionado com sucesso! ✔")
+            st.success("Produto deletado com sucesso! ✔")
         else:
             st.error(f"Erro {response.status_code}: {response.text}")
