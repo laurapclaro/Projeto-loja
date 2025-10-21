@@ -15,7 +15,7 @@ if menu == "📦 Catálogo":
         produtos = response.json().get("produtos", [])
         if produtos:
             for produto in produtos:
-                st.write(f"{produto['nome']} - {produto['categoria']}  {produto['preco']}  {produto['quantidade']}")
+                st.write(f"{produto['nome']} // {produto['categoria']} // {produto['preco']}  // {produto['quantidade']}")
         else:
             st.info("Nenhum produto encontrado🔈")
     else:
